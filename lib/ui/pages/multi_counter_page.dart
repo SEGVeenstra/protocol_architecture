@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:protocol_architecture_test/state/counter/counter_state.dart';
+import 'package:protocol_architecture_test/state/counter_state.dart';
 import 'package:protocol_architecture_test/ui/utils/component_widget.dart';
 import 'package:protocol_architecture_test/ui/widgets/counter_actions_bar.dart';
 import 'package:protocol_architecture_test/ui/widgets/counter_display.dart';

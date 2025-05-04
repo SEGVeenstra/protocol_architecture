@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:protocol_architecture_test/repositories/counter_repository.dart';
-import 'package:protocol_architecture_test/state/counter/counter_state.dart';
+import 'package:protocol_architecture_test/state/counter_state.dart';
 import 'package:protocol_architecture_test/ui/messages/counter_snackbar.dart';
 import 'package:provider/provider.dart';
 

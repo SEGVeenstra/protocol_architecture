@@ -1,34 +1,29 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:protocol_architecture_test/ui/utils/init_widget.dart';
 import 'package:provider/provider.dart';
 
-abstract class ComponentWidget extends StatefulWidget {
+abstract class ComponentWidget<T extends ChangeNotifier>
+    extends StatelessWidget {
   const ComponentWidget({super.key});
 
   /// Creates a [ChangeNotifier] instance for the component.
-  ChangeNotifier stateBuilder(BuildContext context);
+  T stateBuilder(BuildContext context);
 
   /// Called when the component is created.
-  void onCreate(BuildContext context) {}
+  FutureOr<void> onCreate(BuildContext context) {}
 
   /// Builds the component's UI.
   Widget buildComponent(BuildContext context);
 
   @override
-  State<ComponentWidget> createState() => _ComponentWidgetState();
-}
-
-class _ComponentWidgetState extends State<ComponentWidget> {
-  @override
-  void initState() {
-    super.initState();
-    widget.onCreate.call(context);
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => widget.stateBuilder(context),
-      builder: (context, _) => widget.buildComponent(context),
+    return ChangeNotifierProvider<T>(
+      create: (context) => stateBuilder(context),
+      builder:
+          (context, _) =>
+              InitWidget(init: onCreate, child: buildComponent(context)),
     );
   }
 }

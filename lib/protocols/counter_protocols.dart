@@ -42,7 +42,9 @@ abstract class CounterProtocols {
     final oldValue = counterState.value;
 
     await counterRepository.saveCounter(counterState.value = 0);
+
     if (!context.mounted) return;
+
     await CounterSnackbar.show(
       context,
       message: 'Counter has been reset',
